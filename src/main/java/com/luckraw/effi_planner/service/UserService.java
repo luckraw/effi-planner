@@ -4,17 +4,18 @@ import com.luckraw.effi_planner.dto.UserDTO;
 import com.luckraw.effi_planner.mapper.UserMapper;
 import com.luckraw.effi_planner.model.User;
 import com.luckraw.effi_planner.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
 
-    @Autowired
+    private UserRepository userRepository;
     private UserMapper userMapper;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public UserDTO findByUsername(String username) {
         User user = userRepository.findByUsername(username);
